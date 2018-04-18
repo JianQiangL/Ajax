@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .gg{
+            width: 300px;
+            height: 300px;
+            background: black ;
+            opacity: 0.5;
+            margin:200px auto;
+            position:relative;
+            border-radius: 15px;
+        }
+        span{
+            width: 30px;
+            height: 30px;
+            border-radius:15px;
+            position:absolute;
+            top: 0;
+            right: 0;
+            background: white ;
+            font-size: 20px;
+            text-align:center;
+            cursor: pointer ;
+        }
+        .suoding{
+            position:absolute;
+            bottom:-20px;
+            right:0;
+            width: 100px;
+        }
+        a{
+            text-decoration: none ;
+
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+</head>
+<body>
+<div class="gg" method="post"enctype="multipart/form-data"
+><span>x</span>
+    <div class="suoding" ><input type="checkbox" name="checkbox"><a>不再弹出</a></div>
+</div>
+<script>
+jQuery(function(){
+    jQuery("span").on("click",function () {
+        jQuery(".gg").hide();
+    })
+//    console.log(upload1.length)
+//    if(jQuery("upload1".length>8)){
+//        jQuery(".gg").hide()
+//    }else{
+//        jQuery(".gg").show()
+//    }
+})
+
+
+</script>
+</body>
+</html>

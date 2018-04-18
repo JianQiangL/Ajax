@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button class="btn">获取xml</button>
+	<script>
+window.onload=function(){
+	var btn=document.querySelector(".btn")
+		btn.onclick=function(){
+			var ajax=new XMLHttpRequest();
+			ajax.open("post","ajax.json.php");
+			ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			ajax.send();
+			ajax.onreadystatechange=function(){
+				if(ajax.readyState === 4 && ajax.status === 200){
+					console.log(ajax.responseText);
+					var res = ajax.responseText;
+					var new_res= JSON.parse(res);
+					console.log(new_res[0]["name"]);
+					
+				}
+			}
+		}
+		
+}
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script src="jquery-1.11.1.js"></script>
+<script src="template-native.js"></script>
+	<input type="button" value="格式化表单数据" id="info">
+	<script type="text/html" id="temp101">
+	<ul>
+		<li><%=name%></li>
+		<li><%=age%></li>
+		<li><%=skill%></li>
+		<li><ul>
+				<%for(var i=0; i<food.length;i++){%>
+				<li><%=food[i]["food1"]%></li>
+				<li><%=food[i]["food2"]%></li>
+				<%}%>
+		</ul></li>
+	</ul>
+	</script>
+	<script>
+jQuery(function(){
+	var obj={
+		name:"zhangsan",
+		age:"18",
+		skill:"卖萌",
+		food:[{
+			food1:"apple",
+			food2:"orange"
+		},
+		{
+			food1:"apple2",
+			food2:"orange2"},
+		{
+			food1:"apple3",
+			food2:"orange3"}
+		]
+	}
+	$("info").click(function(){
+		var res = template("temp101",obj);
+		console.log(res);
+		document.body.innerHTML=res;
+	})
+})
+
+	</script>
+</body>
+</html>

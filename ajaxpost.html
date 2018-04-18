@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="">
+	用户名：
+<input type="text" name="username" id="username">
+<br><br>
+<!-- <button id="btn">获取数据</button> -->
+<input type="button" id="button" value="获取数据">
+	</form>
+	<script>
+	window.onload =function(){
+		var username =document .querySelector("#username");
+		var btn =document.querySelector("#button");
+		console.log(btn);
+		console.log(username);
+		btn.onclick=function(){
+			var ajax=new XMLHttpRequest();
+			ajax.open("post","ajaxpost.php");
+			ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			ajax.send("username="+username.value+"&age=18");
+			ajax.onreadystatechange=function(){
+				if(ajax.readyState === 4 && ajax.status === 200){
+					console.log(ajax.responseText);
+				}
+			}
+		}
+	}
+
+
+	</script>
+</body>
+</html>

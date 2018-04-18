@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.1.js"></script>
+</head>
+<body>
+<button>获取数据</button>
+<script>
+    jQuery (function(){
+        jQuery("button").on("click",function(){
+            $.ajax({
+                url:"php.php",
+                data:"name=haha&age=10",
+                type:"GET",
+                success:function(data){
+                    console.log(data)
+                },
+                beforeSend:function(){
+                    console.log("发送之前调用");
+                    return false;
+
+                },
+                error:function(aaa){
+                    console.log(aaa)
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

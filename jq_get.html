@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.1.js"></script>
+</head>
+<body>
+<button>获取数据</button>
+<script>
+    jQuery (function () {
+        jQuery ("button").on("click",function () {
+            $.get("php.php","name=haha",function (data) {
+                console.log(data);
+            })
+        })
+    })
+</script>
+</body>
+</html>

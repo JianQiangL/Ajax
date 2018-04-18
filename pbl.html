@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <meta charset = "UTF-8">
+    <title>JQuery 实现瀑布流</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #F7F7F7;
+
+        }
+
+        .wrapper {
+            padding: 50px;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 300px;
+        }
+
+        .items {
+            position: relative;
+            /* display: flex; */
+            /* 环函 */
+            /* flex-wrap: wrap; */
+        }
+
+        .item {
+            width: 228px;
+            position: absolute;
+        }
+
+        .tips {
+            width: 280px;
+            height: 40px;
+            margin: 30px auto 0;
+            text-align: center;
+            line-height: 40px;
+            background-color: #CCC;
+            border-radius: 6px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .tips.loading {
+            /* background-color: transparent; */
+            background-color: hotpink;
+        }
+    </style>
+
+</head>
+<script src = "jquery-1.11.1.js"></script>
+<script src = "template-native.js"></script>
+<script src = "jQuery.waterFall.js"></script>
+
+<script type = "html/template" id = "template">
+    <!--模板-->
+    <%for (var  i = 0; i < items.length; i++){%>
+    <div class = "item" style = "top: 7px;left: 7px;">
+        <img src = "<%=items[i].path%>" alt = "">
+        <p><%=items[i].text%></p>
+    </div>
+    <%}%>
+</script>
+
+<body>
+<h1>瀑布流 展示页面</h1>
+<div class = "wrapper">
+    <!-- items 作为 瀑布流的容器  瀑布流中的 元素的 宽度 是固定的 -->
+    <div class = "items">
+        <!-- 每条元素样式 -->
+        <!--<div class="item" style="top:7px;left: 7px">-->
+            <!--<img src="images/1.jpg" alt="">-->
+            <!--<p>中学时候我们班两个同学打赌，内容是在 厕所吃方便面，谁先吃完谁赢，输了的请 赢了的吃一个月的饭，于是厕所里惊现两 个货蹲坑上吃泡面，这俩货还没有决出胜 负，旁边拉屎的哥们都吐了三回了！！！</p>-->
+        <!--</div>-->
+    </div>
+    <p class = "tips loading" onclick = "getData()">正在加载...</p>
+</div>
+<script>
+    jQuery (function(){
+        window.getData=function(){
+            $.ajax({
+                url:"pbl.php",
+                type:"POST",
+                success:function(data){
+                    console.log(data);
+                    var dataArr= JSON.parse(data);
+                    var obj={
+                        items:dataArr
+                    };
+                    var res = template("template",obj);
+                    jQuery(".items").html(res);
+                    jQuery(".items").waterFall();
+                }
+            })
+        }
+    })
+</script>
+</body>
+
+</html>
